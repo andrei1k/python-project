@@ -1,13 +1,19 @@
 from datetime import datetime
 import copy
 
+# the rate in the moment of writing
+EURO_TO_LEV = 1,95
+DOLLAR_TO_LEV = 1,80
+
 class Expense:
-    def __init__(self, amount: float, type: str,
-                 description: str, date: datetime) -> None:
+    def __init__(self, amount: float,
+                 category: str, description: str,
+                 date: datetime=datetime.now(),currency: str='лв.') -> None:
         self.amount = amount
-        self.type = type
+        self.category = category
         self.description = description
         self.date = date
+        self.currency = currency
 
 class Expenses:
     def __init__(self, expenses: list[Expense]=[]) -> None:
