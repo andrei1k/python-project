@@ -1,0 +1,11 @@
+Budget: 1400.0
+Amount: 1.00 lv.
+Category: food
+Description: it was yummy
+Date: 2024-02-10 20:17:26
+
+Amount: 1234.00 lv.
+Category: rent
+Description: half of my pay check
+Date: 2024-02-10 20:17:26
+
