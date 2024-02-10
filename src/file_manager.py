@@ -1,8 +1,10 @@
 import os
-from src.tracker import Expense, Tracker
+from src.expense import Expense
+from src.tracker import Tracker
+import csv
+
 
 output_dir = './outputs'
-
 
 def save_tracker(tracker: Tracker, file_name: str) -> None:
     try:
@@ -25,3 +27,14 @@ def read_tracker(file_name: str) -> Tracker:
         raise error
         
     return tracker
+
+def export_as_csv(tracker: Tracker, file_name: str) -> None:
+    data = map(lambda expense: expense.to_tuple(), tracker.expenses)
+    file_path = os.path.join(output_dir, file_name)
+    try:
+        with open(file_path, 'w', newline='') as result_file:
+            writer = csv.writer(result_file)
+            writer.writerow(('Amount', 'Currency', 'Category', 'Description', 'Date'))
+            writer.writerows(data)
+    except OSError as error:
+        print(error)

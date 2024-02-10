@@ -1,0 +1,11 @@
+Budget: 40.0
+Amount: 33.33 lv.
+Category: car
+Description: idk
+Date: 2024-02-20 00:00:00
+
+Amount: 111.00 lv.
+Category: pets
+Description: ok
+Date: 2024-02-01 00:00:00
+

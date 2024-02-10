@@ -1,8 +1,17 @@
-import os
-from src.tracker import Expense, Tracker
-from src.file_manager import output_dir, save_tracker, read_tracker
-     
-        
+"""
+This module provides functionality for managing
+expenses and budgets through a command-line interface.
+
+Functions:
+- display_menu(): Displays a menu of options for interacting with the expense tracker.
+- main(): The main function that runs the expense tracker application.
+"""
+
+
+from src.tracker import Tracker
+from src.file_manager import read_tracker
+from src.tracker_worker import TrackerWorker
+
 def display_menu():
     print('Choose the corresponding number')
     print('1. Add an expense')
@@ -10,61 +19,15 @@ def display_menu():
     print('3. View expenses')
     print('4. View statistics')
     print('5. Save current tracker')
-    print('6. Exit')
+    print('6. Export as csv file')
+    print('7. Exit')
 
-def get_amount_from_user() -> float:
-    while True:
-        try:
-            amount = float(input('Enter the amount: '))
-            if amount < 0:
-                raise ValueError
-            break
-        except ValueError:
-            print('Amount should be float and positive.')
-    
-    return amount
-
-def option_add_expense(tracker: Tracker) -> None:
-    amount = get_amount_from_user()        
-    category = input('Enter the category: ')
-    description = input('Enter the description of the expense: ')
-    # date = input('Enter the date: ')
-    
-    tracker.add(Expense(amount, category, description))
-    
-    print('The expense was added!')
-
-def option_change_budget(tracker: Tracker) -> None:
-    budget = get_amount_from_user()
-    tracker.budget = budget
-    print('The budged was changed!')
-
-# print('3. View expenses')
-def option3(tracker: Tracker):
-    print('You selected Option 3')
-    # Add your functionality for Option 3 here
-
-# print('6. Save current tracker')
-def option_save_tracker(tracker: Tracker) -> None:
-    name = input('Save as: ')
-    rewrite = True
-    if os.path.exists(os.path.join(output_dir, name)):
-        if input('This tracker already exists. Do you want to rewrite it? [y/n] ') != 'y':
-            rewrite = False
-    
-    if rewrite:
-        save_tracker(tracker, name)
-        
-    print('Tracker was saved!')
-            
-            
 def main():
-    
     print('Welcome to your expense tracker! Would you like to open existing tracker or start new?')
     choice = ''
     tracker = Tracker()
-    
-    while choice not in ['1', '2']:  
+
+    while choice not in ['1', '2']:
         print('Choose 1 or 2')
         print('1. Open existing tracker')
         print('2. Start new')
@@ -75,29 +38,33 @@ def main():
                 tracker = read_tracker(name)
                 break
             except OSError:
-                print('Coult nor read the file!')
+                print('Could not read the file!')
                 continue
-            
+
         if choice == '2':
             break
 
-        
+    tracker_options = TrackerWorker(tracker)
+
     while True:
         display_menu()
         choice = input('Enter your choice: ')
 
         match choice:
             case '1':
-                option_add_expense(tracker)
+                tracker_options.add_expense()
             case '2':
-                option_change_budget(tracker)
+                tracker_options.change_budget()
             case '3':
-                option3(tracker)
+                tracker_options.view_sublist ()
             case '4':
-                option3(tracker)
+                pass
+                # option3(tracker)
             case '5':
-                option_save_tracker(tracker)
+                tracker_options.save_tracker()
             case '6':
+                tracker_options.save_tracker_as_csv()
+            case '7':
                 print('Exiting the program. Goodbye!')
                 break
             case _:

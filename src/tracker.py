@@ -1,35 +1,7 @@
 from datetime import datetime
 import copy
 from functools import reduce
-
-# the rate in the moment of writing
-EURO_TO_LEV = 1,95
-DOLLAR_TO_LEV = 1,80
-
-class Expense:
-    def __init__(self, amount: float,
-                 category: str, description: str,
-                 date: datetime=datetime.now(),currency: str='lv.') -> None:
-        self.amount = amount
-        self.category = category
-        self.description = description
-        self.date = date
-        self.currency = currency
-        
-    def __str__(self) -> str:
-        return f'Amount: {self.amount:.2f} {self.currency}\nCategory: {self.category}\nDescription: {self.description}\nDate: {self.date.strftime("%Y-%m-%d %H:%M:%S")}\n\n'
-    
-    @classmethod
-    def from_string(cls, expense_str: str) -> 'Expense':
-        parts = expense_str.split('\n')
-        amount_currency = parts[0].split(': ')[1].split(' ')
-        amount = float(amount_currency[0])
-        currency = amount_currency[1]
-        category = parts[1].split(': ')[1]
-        description = parts[2].split(': ')[1]
-        date_str = parts[3].split(': ')[1]
-        date = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S')
-        return cls(amount, category, description, date, currency)
+from src.expense import Expense
 
 class Tracker:
     def __init__(self, expenses: list[Expense]=[], budget: float=0) -> None:
