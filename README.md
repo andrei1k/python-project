@@ -21,6 +21,6 @@ This project provides functionality for managing expenses and budgets through a 
 To run the expense tracker, execute the following command:
 
 ```bash
-python3 .\scr\main.py
+python3 main.py
 ```
 Follow the cli instructions and try to enter valid inputs.
