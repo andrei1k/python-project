@@ -43,11 +43,11 @@ def get_date_from_user(date_note: str='a') -> datetime:
     '''
     while True:
         try:
-            date_str = input(f"Enter {date_note} date (YYYY-MM-DD): ")
+            date_str = input(f'Enter {date_note} date (YYYY-MM-DD): ')
             date = datetime.strptime(date_str, '%Y-%m-%d')
             return date
         except ValueError:
-            print("Invalid date format.")
+            print('Invalid date format.')
 
 class TrackerWorker():
     '''
