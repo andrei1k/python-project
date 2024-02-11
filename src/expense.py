@@ -18,7 +18,12 @@ class Expense:
         return (self.amount, self.currency, self.category, self.description, self.date)
 
     def __str__(self) -> str:
-        return f'Amount: {self.amount:.2f} {self.currency}\nCategory: {self.category}\nDescription: {self.description}\nDate: {self.date.strftime("%Y-%m-%d %H:%M:%S")}\n\n'
+        return (
+            f'Amount: {self.amount:.2f} {self.currency}\n'
+            f'Category: {self.category}\n'
+            f'Description: {self.description}\n'
+            f'Date: {self.date.strftime("%Y-%m-%d %H:%M:%S")}\n\n'
+        )
 
     @classmethod
     def from_string(cls, expense_str: str) -> 'Expense':

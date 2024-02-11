@@ -4,6 +4,7 @@ and passing it to the current tracker
 """
 from datetime import datetime
 import os
+from src.diagrams import draw_diagram_by_categories, draw_spending_graph
 from src.expense import Expense
 from src.tracker import Tracker
 from src.file_manager import export_as_csv, OUTPUT_DIR, save_tracker
@@ -49,11 +50,14 @@ class TrackerWorker():
         self._tracker.budget = budget
         print('The budged was changed!')
 
-    def view_sublist(self):
+    def get_sublist(self) -> list[Expense]:
         start_date = get_date_from_user('start')
         end_date = get_date_from_user('end')
 
-        sublist = self._tracker.sublist(start_date, end_date)
+        return self._tracker.sublist(start_date, end_date)
+
+    def view_sublist(self) -> None:
+        sublist = self.get_sublist()
 
         for expense in sublist:
             print(str(expense))
@@ -80,3 +84,11 @@ class TrackerWorker():
                 print('Tracker was saved!')
             except OSError:
                 print('Tracker was NOT saved!')
+
+    def show_bar_plot_by_categories(self) -> None:
+        sublist = self.get_sublist()
+        draw_diagram_by_categories(sublist)
+
+    def show_line_plot(self) -> None:
+        sublist = self.get_sublist()
+        draw_spending_graph(sublist)
