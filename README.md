@@ -4,11 +4,11 @@ This project provides functionality for managing expenses and budgets through a 
 
 ## Installation
 
-1. Clone the repository:
+1. Clone the repository
 
-2. Navigate to the project directory:
+2. Navigate to the project directory
 
-3. Create a virtual environment and activate it (optional but recommended):
+3. Create a virtual environment and activate it
 
 5. Install the project dependencies using `pip`:
 
