@@ -1,0 +1,6 @@
+Budget: 100.0
+Amount: 20.00 lv.
+Category: food
+Description: desert afgter i got 6
+Date: 2024-02-11 00:00:00
+

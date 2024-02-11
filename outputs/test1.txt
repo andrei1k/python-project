@@ -2,10 +2,10 @@ Budget: 400
 Amount: 1.00 lv.
 Category: food
 Description: it was yummy
-Date: 2024-02-10 23:14:16
+Date: 2024-02-11 16:47:49
 
 Amount: 1234.00 lv.
 Category: rent
 Description: half of my pay check
-Date: 2024-02-10 23:14:16
+Date: 2024-02-11 16:47:49
 
