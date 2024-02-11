@@ -13,6 +13,7 @@ def save_tracker(tracker: Tracker, file_name: str) -> None:
             result_file.writelines(map(str, tracker.expenses))
     except OSError as error:
         print(error)
+        raise OSError
         
 def read_tracker(file_name: str) -> Tracker:
     tracker = Tracker()
@@ -38,3 +39,4 @@ def export_as_csv(tracker: Tracker, file_name: str) -> None:
             writer.writerows(data)
     except OSError as error:
         print(error)
+        raise OSError

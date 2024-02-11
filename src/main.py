@@ -57,13 +57,12 @@ def main():
                 tracker_options.change_budget()
             case '3':
                 tracker_options.view_sublist ()
-            case '4':
-                pass
-                # option3(tracker)
+            # case '4':
+            #     pass
             case '5':
                 tracker_options.save_tracker()
             case '6':
-                tracker_options.save_tracker_as_csv()
+                tracker_options.save_tracker()
             case '7':
                 print('Exiting the program. Goodbye!')
                 break

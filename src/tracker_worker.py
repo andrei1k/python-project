@@ -62,24 +62,18 @@ class TrackerWorker():
             if input('This tracker already exists. Do you want to rewrite it? [y/n] ') != 'y':
                 rewrite = False
         
-        if rewrite:
-            save_tracker(self._tracker, name)
-            print('Tracker was saved!')
-            return
-
-        print('Tracker was NOT saved!')
-
-# Primeni
-    def save_tracker_as_csv(self) -> None:
-        name = input('Save as: ')
-        rewrite = True
-        if os.path.exists(os.path.join(output_dir, name)):
-            if input('This tracker already exists. Do you want to rewrite it? [y/n] ') != 'y':
-                rewrite = False
+        format = name.split('.')[-1]
         
         if rewrite:
-            export_as_csv(self._tracker, name)
-            print('Tracker was saved!')
-            return
+            try:
+                if format == 'csv':
+                    export_as_csv(self._tracker, name)
+                elif format == 'txt':
+                    save_tracker(self._tracker, name)
+                else:
+                    print('Invalid format (try .txt or .csv)')
+                    return
 
-        print('Tracker was NOT saved!')
+                print('Tracker was saved!')
+            except OSError:
+                print('Tracker was NOT saved!')
