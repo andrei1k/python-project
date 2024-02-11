@@ -1,3 +1,7 @@
+"""
+This module implements class which saves the budget and expenses
+and provides core functionality for working with them
+"""
 from datetime import datetime
 import copy
 from functools import reduce

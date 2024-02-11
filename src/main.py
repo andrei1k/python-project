@@ -1,10 +1,6 @@
 """
 This module provides functionality for managing
 expenses and budgets through a command-line interface.
-
-Functions:
-- display_menu(): Displays a menu of options for interacting with the expense tracker.
-- main(): The main function that runs the expense tracker application.
 """
 
 

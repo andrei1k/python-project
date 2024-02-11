@@ -1,3 +1,7 @@
+"""
+This module implements class for storing the main data for expenses in the program
+"""
+
 from datetime import datetime
 
 class Expense:
@@ -9,13 +13,13 @@ class Expense:
         self.description = description
         self.date = date
         self.currency = currency
-        
+
     def to_tuple(self) -> tuple[float, str, str, str, datetime]:
         return (self.amount, self.currency, self.category, self.description, self.date)
-        
+
     def __str__(self) -> str:
         return f'Amount: {self.amount:.2f} {self.currency}\nCategory: {self.category}\nDescription: {self.description}\nDate: {self.date.strftime("%Y-%m-%d %H:%M:%S")}\n\n'
-    
+
     @classmethod
     def from_string(cls, expense_str: str) -> 'Expense':
         parts = expense_str.split('\n')
